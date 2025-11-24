@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorre Chandana - Business Analyst Portfolio</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Source+Code+Pro:400' rel='stylesheet'>
+    
+    <style>
+        /* CSS Styling */
+        
+        :root {
+            --primary-color: #64ffda; /* Light Cyan/Aqua */
+            --secondary-color: #0d1a26; /* Dark Blue/Black Background */
+            --background-color: #112240; /* Slightly Lighter Dark Blue */
+            --text-light: #ccd6f6; /* Light Grey Text */
+            --text-dark-accent: #8892b0; /* Slate Grey Accent */
+            --border-color: #233554;
+            --font-main: 'Open Sans', sans-serif;
+            --font-code: 'Source Code Pro', monospace;
+        }
+
+        /* Base & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--secondary-color);
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Typography & Headings */
+        h1, h2, h3 {
+            font-family: var(--font-main);
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background-color: var(--border-color);
+            margin-top: 10px;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-dark-accent);
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #a6ffef; /* Lighter aqua on hover */
+            text-decoration: underline;
+        }
+        
+        /* Utility Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header / Nav */
+        #header {
+            background: var(--background-color);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        #nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        #nav ul li a {
+            color: var(--text-dark-accent);
+            font-weight: 600;
+            font-size: 1em;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s, color 0.3s;
+        }
+
+        #nav ul li a:hover {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            text-decoration: none;
+        }
+        
+        /* Contact Bar */
+        #contact-bar {
+            text-align: center;
+            padding: 10px 0;
+            background: var(--background-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        #contact-bar a {
+            color: var(--text-dark-accent);
+            margin: 0 15px;
+            font-size: 0.9em;
+            display: inline-block;
+        }
+        
+        #contact-bar a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .contact-icon {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            text-align: left;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero-content p:first-child {
+            color: var(--primary-color);
+            font-family: var(--font-code);
+            margin-bottom: 10px;
+        }
+
+        #hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+
+        #hero h1 span {
+            color: var(--text-dark-accent);
+        }
+        
+        .typewriter-text {
+            border-right: 2px solid var(--primary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            font-family: var(--font-code);
+            font-size: 1.1em;
+            color: var(--primary-color);
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Resume Items */
+        .item-card {
+            background-color: var(--background-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            border-left-color: #a6ffef;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: var(--text-dark-accent);
+        }
+
+        .institution-name {
+            display: block;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .item-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .item-card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-dark-accent);
+            font-size: 0.95em;
+        }
+
+        .item-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.1em;
+        }
+        
+        /* Skills & Certifications */
+        .skills-grid, .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-group {
+            background-color: var(--background-color);
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-group h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .skill-group span {
+            display: inline-block;
+            background-color: #233554;
+            color: var(--text-light);
+            padding: 5px 10px;
+            margin: 5px 5px 0 0;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-family: var(--font-code);
+        }
+        
+        /* Footer */
+        #footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        #footer p {
+            color: var(--text-dark-accent);
+            font-size: 0.9em;
+        }
+
+        .social-links {
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.5em;
+            margin: 0 10px;
+            color: var(--text-dark-accent);
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            #contact-bar {
+                display: block; /* Stack links vertically on mobile */
+                text-align: center;
+            }
+            #contact-bar a {
+                display: block;
+                padding: 5px 0;
+                margin: 5px 0;
+            }
+
+            #nav ul {
+                gap: 20px;
+            }
+            
+            #hero {
+                min-height: 50vh;
+            }
+            
+            #hero h1 {
+                font-size: 2.5em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+                text-align: center;
+            }
+
+            h2::after {
+                margin: 10px auto 0;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="contact-bar">
+        <div class="container">
+            <a href="mailto:2402B07149@sru.edu.in" target="_blank">
+                <span class="contact-icon">&#9993;</span> 2402b07149@sru.edu.in
+            </a>
+            <a href="tel:+917989028159">
+                <span class="contact-icon">&#9742;</span> +91 79890 28159
+            </a>
+            <a href="https://www.linkedin.com/in/gorrechandana" target="_blank">
+                <span class="contact-icon">&#xeacb;</span> LinkedIn Profile
+            </a>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <nav id="nav">
+                <ul>
+                    <li><a href="#summary">01. Summary</a></li>
+                    <li><a href="#experience">02. Experience</a></li>
+                    <li><a href="#projects">03. Projects</a></li>
+                    <li><a href="#skills">04. Skills</a></li>
+                    <li><a href="#education">05. Education</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="container">
+        <div class="hero-content">
+            <p>Hi, my name is</p>
+            <h1>Gorre Chandana.</h1>
+            <h1><span id="job-title-text">I leverage data for business success.</span></h1>
+            <p class="typewriter-text">
+                MBA Business Analytics Student | Data-Driven Problem Solver
+            </p>
+            <p style="margin-top: 25px;">
+                I'm a Business Analyst student proficient in **Power BI, SQL, and Python**, focusing on transforming complex data into **actionable business strategies**. Currently pursuing an MBA at SRU University.
+            </p>
+        </div>
+    </section>
+
+    <section id="summary" class="container fade-in">
+        <h2>01. Professional Summary</h2>
+        <div class="item-card">
+            <p style="color: var(--text-light);">
+                **MBA (Business Analytics)** candidate with strong analytical and financial acumen, skilled in **Power BI, Advanced Excel, SQL, and Python**. Completed an apprenticeship at Genpact in the O2C process. Recognized for **academic excellence** with an analytics research paper selected at IMI Kolkata. Passionate about leveraging data-driven insights to solve business challenges.
+            </p>
+        </div>
+    </section>
+
+    <section id="experience" class="container fade-in">
+        <h2>02. Experience</h2>
+        <div class="item-card">
+            <div class="meta-info">
+                <h3 style="color: var(--primary-color);">Genpact | Apprenticeship – Order to Cash (O2C) Process</h3>
+                <span class="date">June 2024 – July 2024</span>
+            </div>
+            <ul class="description-list">
+                <li>Worked in **Customer Master Data Management** and analyzed payment data in the US **Cash Application process** for timely reconciliation.</li>
+                <li>Assisted in tracking financial transactions and identifying discrepancies using **Excel**.</li>
+                <li>Developed analytical and problem-solving skills through exposure to large-scale financial operations.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="projects" class="container fade-in">
+        <h2>03. Key Projects</h2>
+        <div class="item-card">
+            <div class="meta-info">
+                <h3>Coffee Shop Sales Analysis | SQL & Power BI</h3>
+                <span class="tools">SQL, Power BI</span>
+            </div>
+            <ul class="description-list">
+                <li>Utilized **SQL** for data cleaning, aggregation, and calculation of KPIs like total sales and top-selling products.</li>
+                <li>Created interactive **Power BI dashboards** to visualize sales performance, customer preferences, and time-based trends.</li>
+                <li>Derived **actionable recommendations** for sales strategy and inventory planning through data-driven insights.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills" class="container fade-in">
+        <h2>04. Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-group">
+                <h4>Analytics Tools</h4>
+                <span>Power BI</span>
+                <span>Advanced Excel</span>
+                <span>SQL</span>
+                <span>Python</span>
+                <span>Business Intelligence</span>
+            </div>
+            <div class="skill-group">
+                <h4>Core Data Skills</h4>
+                <span>Data Cleaning</span>
+                <span>Data Visualization</span>
+                <span>KPI Reporting</span>
+                <span>Trend Analysis</span>
+                <span>Forecasting</span>
+            </div>
+            <div class="skill-group">
+                <h4>Business & Soft Skills</h4>
+                <span>Financial Analysis</span>
+                <span>Problem Solving</span>
+                <span>Communication</span>
+                <span>Team Collaboration</span>
+                <span>Leadership</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="container fade-in">
+        <h2>05. Education & Certifications</h2>
+        
+        <div class="skills-grid">
+            <div class="skill-group">
+                <h4>Education</h4>
+                <div class="item-card" style="border-left-color: #8892b0;">
+                    <p style="font-weight: 600;">MBA (Business Analytics)</p>
+                    <span class="institution-name">SRU University, Warangal</span>
+                    <span style="color: var(--primary-color); font-size: 0.9em;">Expected 2026 | 90%</span>
+                </div>
+                <div class="item-card" style="border-left-color: #8892b0;">
+                    <p style="font-weight: 600;">B.Com (Honours)</p>
+                    <span class="institution-name">Shri Ram College of Commerce (SRCC), DU</span>
+                    <span style="color: var(--primary-color); font-size: 0.9em;">2023 | 77%</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h4>Certifications & Achievements</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px; color: var(--text-light);"><span style="color: var(--primary-color);">▹</span> Power BI (Microsoft Learn)</li>
+                    <li style="margin-bottom: 10px; color: var(--text-light);"><span style="color: var(--primary-color);">▹</span> Data Analytics Essentials (Cisco)</li>
+                    <li style="margin-bottom: 10px; color: var(--text-light);"><span style="color: var(--primary-color);">▹</span> Analytics research paper selected at IMI Kolkata.</li>
+                    <li style="margin-bottom: 10px; color: var(--text-light);"><span style="color: var(--primary-color);">▹</span> Vice-President, Business Analytics Club.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/gorrechandana" target="_blank" title="LinkedIn"><span style="color: #0e76a8;">&#xeacb;</span></a>
+                <a href="mailto:2402B07149@sru.edu.in" title="Email"><span style="color: var(--primary-color);">&#9993;</span></a> 
+            </div>
+            <p>Designed and Built by Gorre Chandana. Powered by HTML, CSS, and JS.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function for Fade-in Loading Effect (Smooth appearance of sections)
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.2, // Start animation when 20% of element is visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+
+</body>
+</html>
